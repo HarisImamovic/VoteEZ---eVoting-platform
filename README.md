@@ -1,4 +1,4 @@
-# Web-Programming
+# VoteEZ
 Link for the deployed application: https://vote-ez-e-voting-platform.vercel.app/
 
 Link for Swagger API documentation: https://voteez-evoting-platform-production.up.railway.app/public/v1/docs/
