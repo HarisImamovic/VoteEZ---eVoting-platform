@@ -1,12 +1,41 @@
 # VoteEZ
-Link for the deployed application: https://vote-ez-e-voting-platform.vercel.app/
 
-Link for Swagger API documentation: https://voteez-evoting-platform.onrender.com/public/v1/docs/
+## Link for the deployed application: https://vote-ez-e-voting-platform.vercel.app/
 
-VoteEZ is a web-based application that enables secure, efficient and easy electronic voting.
-The creation of VoteEZ is divided into 5 different milestones:
-1. Initial Setup and Frontend Development
-2. Backend Setup and CRUD Operations for Initial Entities
-3. Full CRUD Implementation for All Entities & Open API
-4. Middleware, Authentication, and Authorization
-5. Final Deployment, API Documentation, and CI/CD
+## Link for Swagger API documentation: https://voteez-evoting-platform.onrender.com/public/v1/docs/
+
+
+🎯 About
+VoteEZ is a web-based electronic voting platform designed to make voting accessible, secure, and transparent. It provides a seamless experience for both voters and administrators.
+
+Why VoteEZ?
+
+🔐 Secure: JWT-based authentication and authorization
+⚡ Fast: Optimized backend with efficient database queries
+🎨 Simple UI: Clean and intuitive user interface
+📊 Real-time: Live voting results and statistics
+
+🛠️ Tech Stack
+
+Backend
+
+Language: PHP
+Framework: Flight PHP (Microframework)
+Database: MySQL
+Authentication: JWT (JSON Web Tokens)
+API Documentation: OpenAPI 3.0 / Swagger
+
+DevOps & Deployment
+
+Frontend Hosting: Vercel
+Backend Hosting: Render
+Database Hosting: Railway
+Containerization: Docker
+Version Control: Git / GitHub
+
+👨‍💻 Author
+[Haris Imamović](#https://github.com/HarisImamovic)
+
+🙏 Additional Author Notes
+The key factor for building this application was my country's awful voting process :)
+So I hope that this project will at least be able to motivate you to work on something which might improve your environment <3
