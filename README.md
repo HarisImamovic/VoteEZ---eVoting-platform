@@ -12,8 +12,11 @@ VoteEZ is a web-based electronic voting platform designed to make voting accessi
 Why VoteEZ?
 
 🔐 Secure: JWT-based authentication and authorization
+
 ⚡ Fast: Optimized backend with efficient database queries
+
 🎨 Simple UI: Clean and intuitive user interface
+
 📊 Real-time: Live voting results and statistics
 
 # 🛠️ Tech Stack
