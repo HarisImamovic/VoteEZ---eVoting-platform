@@ -8,7 +8,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 if($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1'){
     define('BASE_URL', 'http://localhost:80/Web-Programming/voting-system/backend/');
 } else {
-    define('BASE_URL', 'https://voteez-evoting-platform-production.up.railway.app/');
+    define('BASE_URL', 'https://voteez-evoting-platform.onrender.com/');
 }
 
 $openapi = \OpenApi\Generator::scan([
