@@ -25,27 +25,27 @@ Why VoteEZ?
 
 ✅ Backend
 
-*Language: PHP
+* Language: PHP
 
-*Framework: Flight PHP (Microframework)
+* Framework: Flight PHP (Microframework)
 
-*Database: MySQL
+* Database: MySQL
 
-*Authentication: JWT (JSON Web Tokens)
+* Authentication: JWT (JSON Web Tokens)
 
-*API Documentation: OpenAPI 3.0 / Swagger
+* API Documentation: OpenAPI 3.0 / Swagger
 
 ✅ DevOps & Deployment
 
-*Frontend Hosting: Vercel
+* Frontend Hosting: Vercel
 
-*Backend Hosting: Render
+* Backend Hosting: Render
 
-*Database Hosting: Railway
+* Database Hosting: Railway
 
-*Containerization: Docker
+* Containerization: Docker
 
-*Version Control: Git / GitHub
+* Version Control: Git / GitHub
 
 # 👨‍💻 Author
 
