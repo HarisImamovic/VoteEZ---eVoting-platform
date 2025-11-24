@@ -5,7 +5,8 @@
 ## Link for Swagger API documentation: https://voteez-evoting-platform.onrender.com/public/v1/docs/
 
 
-🎯 About
+# 🎯 About
+
 VoteEZ is a web-based electronic voting platform designed to make voting accessible, secure, and transparent. It provides a seamless experience for both voters and administrators.
 
 Why VoteEZ?
@@ -15,7 +16,7 @@ Why VoteEZ?
 🎨 Simple UI: Clean and intuitive user interface
 📊 Real-time: Live voting results and statistics
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 Backend
 
@@ -33,9 +34,12 @@ Database Hosting: Railway
 Containerization: Docker
 Version Control: Git / GitHub
 
-👨‍💻 Author
+# 👨‍💻 Author
+
 [Haris Imamović](#https://github.com/HarisImamovic)
 
-🙏 Additional Author Notes
+# 🙏 Additional Author Notes
+
 The key factor for building this application was my country's awful voting process :)
+
 So I hope that this project will at least be able to motivate you to work on something which might improve your environment <3
