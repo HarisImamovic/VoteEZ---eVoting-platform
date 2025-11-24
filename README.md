@@ -21,20 +21,28 @@ Why VoteEZ?
 
 # 🛠️ Tech Stack
 
-Backend
+✅ Backend
 
 Language: PHP
+
 Framework: Flight PHP (Microframework)
+
 Database: MySQL
+
 Authentication: JWT (JSON Web Tokens)
+
 API Documentation: OpenAPI 3.0 / Swagger
 
-DevOps & Deployment
+✅ DevOps & Deployment
 
 Frontend Hosting: Vercel
+
 Backend Hosting: Render
+
 Database Hosting: Railway
+
 Containerization: Docker
+
 Version Control: Git / GitHub
 
 # 👨‍💻 Author
