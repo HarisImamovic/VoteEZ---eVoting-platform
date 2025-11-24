@@ -1,0 +1,29 @@
+# Use PHP with Apache
+FROM php:8.2-apache
+
+# Install PHP extensions needed
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Enable Apache rewrite module (required for FlightPHP)
+RUN a2enmod rewrite
+
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy project files to web root
+COPY . /var/www/html/
+
+# Set working directory
+WORKDIR /var/www/html/
+
+# Install PHP dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Set permissions for Apache
+RUN chown -R www-data:www-data /var/www/html/
+
+# Expose port 80
+EXPOSE 80
+
+# Run Apache in foreground
+CMD ["apache2-foreground"]
