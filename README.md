@@ -41,7 +41,7 @@ Why VoteEZ?
 
 * Backend Hosting: Render
 
-* Database Hosting: Railway
+* Database Hosting: Aiven
 
 * Containerization: Docker
 
