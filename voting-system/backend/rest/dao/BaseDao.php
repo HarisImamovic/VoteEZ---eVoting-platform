@@ -11,6 +11,13 @@ class BaseDao
         $this->table_name = $table_name;
         try {
             $config = Config::DB();
+
+            $ssl_ca_content = $config['ssl_ca'] ?? getenv('DB_SSL_CA');
+            $ssl_ca_path = null;
+            if ($ssl_ca_content) {
+                $ssl_ca_path = tempnam(sys_get_temp_dir(), 'ca_') . '.pem';
+                file_put_contents($ssl_ca_path, $ssl_ca_content);
+            }
             $dsn = sprintf(
                 'mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4',
                 $config['host'],
@@ -20,8 +27,10 @@ class BaseDao
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::MYSQL_ATTR_SSL_CA => $config['ssl_ca']
             ];
+            if ($ssl_ca_path) {
+                $options[PDO::MYSQL_ATTR_SSL_CA] = $ssl_ca_path;
+            }
             //print_r("Successfully connected to the database!");
             $this->connection = new PDO(
                 $dsn,
