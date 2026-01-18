@@ -14,7 +14,7 @@ class Config
         self::$db_config = [
             'host' => getenv('DB_HOST'),
             'user' => getenv('DB_USER'),
-            'pass' => getenv('DB_PASSWORD'),
+            'pass' => getenv('DB_PASS'),
             'port' => getenv('DB_PORT') ?: 11999,
             'name' => getenv('DB_NAME'),
             'ssl_ca' => getenv('DB_SSL_CA'),
@@ -40,7 +40,7 @@ class Config
         return $config['user'];
     }
 
-    public static function DB_PASSWORD()
+    public static function DB_PASS()
     {
         $config = self::DB();
         return $config['pass'];
