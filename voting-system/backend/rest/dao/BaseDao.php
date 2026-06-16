@@ -15,7 +15,6 @@ class BaseDao{
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
         } catch(PDOException $e){
-            print_r($e);
             throw $e;
         }
     }

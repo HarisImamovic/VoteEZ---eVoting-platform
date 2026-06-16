@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 
 // Dynamic CORS headers
 $allowedOrigins = [
@@ -30,9 +32,9 @@ require "middleware/AuthMiddleware.php";
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+Flight::map('error', function(Throwable $e) {
+    Flight::halt(500, 'An internal server error occurred.');
+});
 
 Flight::register('candidate_service', "CandidateService");
 Flight::register('user_service', "UserService");
