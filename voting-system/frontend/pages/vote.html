@@ -1,46 +1,46 @@
-<section class="py-5 border-bottom bg-light">
-    <div class="container px-5 my-5">
-        <div class="text-center mb-4">
-            <h2 class="fw-bolder display-5">Vote for your candidates</h2>
-            <p class="lead text-muted fs-5">Note that you can only vote once</p>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="card shadow-lg p-5">
-                    <div class="mb-4">
-                        <label for="partySelect" class="form-label fw-bold fs-5">Select a political party</label>
-                        <select class="js-example-basic-single form-select" id="partySelect"></select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="candidateSelect" class="form-label fw-bold fs-5">Select candidates<span id="toAdd"></span></label>
-                        <select class="js-example-basic-single form-select" id="candidateSelect" multiple></select>
-                    </div>
-                    <div class="d-grid">
-                        <button class="btn btn-danger btn-lg fw-bold" id="submitVote">
-                            Submit Vote
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="d-flex align-items-center justify-content-center bg-light min-vh-100 border-bottom py-5">
+  <div class="container px-5">
+    <div class="text-center mb-4">
+      <h2 class="fw-bolder display-5">Vote for your candidates</h2>
+      <p class="lead text-muted fs-5">Note that you can only vote once</p>
     </div>
-    <!-- Popup modal-->
-    <div class="modal fade" id="areYouSureModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Confirm vote</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">Are you sure you want to submit your vote?</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger">Vote</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
-            </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow-lg p-5">
+          <div class="mb-4">
+            <label for="partySelect" class="form-label fw-bold fs-5">Select a political party</label>
+            <select class="js-example-basic-single form-select" id="partySelect"></select>
+          </div>
+          <div class="mb-4">
+            <label for="candidateSelect" class="form-label fw-bold fs-5">Select candidates <span id="toAdd"></span></label>
+            <select class="js-example-basic-single form-select" id="candidateSelect" multiple></select>
+          </div>
+          <div class="d-grid">
+            <button class="btn btn-danger btn-lg fw-bold" id="submitVote">
+              Submit Vote
+            </button>
           </div>
         </div>
-      </div>      
+      </div>
+    </div>
+  </div>
+  <!-- Popup modal -->
+  <div class="modal fade" id="areYouSureModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm vote</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">Are you sure you want to submit your vote?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger">Vote</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <script>
-    VoteService.init();
+  VoteService.init();
 </script>

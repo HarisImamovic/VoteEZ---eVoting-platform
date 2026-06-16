@@ -2,24 +2,31 @@
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 
+if ($_SERVER['REQUEST_URI'] === '/' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    http_response_code(200);
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'healthy', 'service' => 'VoteEZ Backend']);
+    exit;
+}
+
 // Dynamic CORS headers
 $allowedOrigins = [
     "http://127.0.0.1:5501",
-    "https://stingray-app-4n5gc.ondigitalocean.app",
+    "https://vote-ez-e-voting-platform.vercel.app",
 ];
 
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
     header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
-} 
+}
 
 header("Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authentication");
 
-// Respond to preflight OPTIONS request and exit early
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    http_response_code(204); // No Content
+    http_response_code(204);
     exit();
-} 
+}
+
 require "./vendor/autoload.php";
 require "rest/services/CandidateService.php";
 require "rest/services/UserService.php";
