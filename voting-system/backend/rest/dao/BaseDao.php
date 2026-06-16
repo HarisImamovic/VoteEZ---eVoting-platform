@@ -31,7 +31,6 @@ class BaseDao
             if ($ssl_ca_path) {
                 $options[PDO::MYSQL_ATTR_SSL_CA] = $ssl_ca_path;
             }
-            //print_r("Successfully connected to the database!");
             $this->connection = new PDO(
                 $dsn,
                 $config['user'],
@@ -39,23 +38,23 @@ class BaseDao
                 $options
             );
         } catch (PDOException $e) {
-            print_r($e);
             throw $e;
         }
     }
+
     protected function query($query, $params)
     {
         $stmt = $this->connection->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     protected function query_unique($query, $params)
     {
         $results = $this->query($query, $params);
         return reset($results);
     }
 
-    //Method for adding an entry to a database table
     public function add($entity)
     {
         $query = "INSERT INTO " . $this->table_name . " (";
@@ -67,7 +66,7 @@ class BaseDao
         foreach ($entity as $column => $value) {
             $query .= ":" . $column . ', ';
         }
-        $query = substr($query, 0, -2); //Remove the , and whitespace after the above loop finishes
+        $query = substr($query, 0, -2);
         $query .= ")";
         $stmt = $this->connection->prepare($query);
         $stmt->execute($entity);
@@ -75,7 +74,6 @@ class BaseDao
         return $entity;
     }
 
-    //Method for updating an entry from a database table
     public function update($entity, $id, $id_column = "id")
     {
         $query = "UPDATE " . $this->table_name . " SET ";
@@ -90,7 +88,6 @@ class BaseDao
         return $entity;
     }
 
-    //Method for deleting an entry from a database table
     public function delete($id)
     {
         $stmt = $this->connection->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
@@ -98,13 +95,11 @@ class BaseDao
         $stmt->execute();
     }
 
-    //Method for getting all entries (no filter criteria) from a database table
     public function get_all()
     {
         return $this->query("SELECT * FROM " . $this->table_name, []);
     }
 
-    //Method for getting entity by id from a database table
     public function get_by_id($id)
     {
         return $this->query_unique("SELECT * FROM " . $this->table_name . " WHERE id=:id", ['id' => $id]);

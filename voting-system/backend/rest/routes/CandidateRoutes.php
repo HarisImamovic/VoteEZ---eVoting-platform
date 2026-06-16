@@ -237,22 +237,12 @@ Flight::route("POST /candidate", function(){
  * )
  */
 Flight::route("PATCH /candidate/@id", function ($id) {
-    Flight::auth_middleware()->authorizeRoles([Roles::VOTER, Roles::ADMIN]);
-    $user = Flight::get('user');
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $candidate = Flight::request()->data->getData();
-    if($user->role === Roles::VOTER && isset($candidate['vote_count']) && $candidate['vote_count'] === 'increment'){
-        Flight::candidate_service()->increment_votes($id);
-        Flight::json(['message'=>'Vote count incremented.']);
-        return;
-    }
-    if($user->role === Roles::ADMIN){
-        Flight::json([
-        'message'=>"Candidate has been updated!",
-        'data'=>Flight::candidate_service()->update($candidate, $id, 'id')
-        ]);
-        return;
-    }
-    Flight::json(['message'=>"Only admins have the permission for this operation!"]);
+    Flight::json([
+        'message' => 'Candidate has been updated!',
+        'data'    => Flight::candidate_service()->update($candidate, $id, 'id')
+    ]);
 });
 
 //Delete a candidate from the database

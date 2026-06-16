@@ -47,7 +47,7 @@ var UserService = {
           },
           password: {
             required: true,
-            minlength: 6
+            minlength: 8
           },
           phone: {
             required: true,
@@ -64,7 +64,7 @@ var UserService = {
           },
           password: {
             required: "Please enter a password",
-            minlength: "Password must be at least 6 characters"
+            minlength: "Password must be at least 8 characters"
           },
           phone: {
             required: "Please enter your phone number",
@@ -173,7 +173,6 @@ var UserService = {
         contentType: "application/json",
         dataType: "json",
         success: function (result) {
-          console.log(result);
           localStorage.setItem("user_token", result.data.token);
           window.location.replace("index.html");
         },
@@ -190,7 +189,6 @@ var UserService = {
         contentType: "application/json",
         dataType: "json",
         success: function(result){
-          console.log(result);
           window.location.replace("login.html");
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -400,7 +398,6 @@ var UserService = {
             $('input[name="email"]').val(data.email);
             $('input[name="phone"]').val(data.phone);
             $('input[name="role"]').val(data.role);
-            $('input[name="password"]').val(data.password);
             $('input[name="id"]').val(data.id);
             $.unblockUI();
         }, function (xhr, status, error) {
@@ -459,7 +456,7 @@ var UserService = {
         })
     },
     closeModal: function(){
-       const modals = ['exampleModal4','#exampleUsersModal', '#exampleUsersModal2', '#exampleUsersModal3', '#exampleUsersModal4'];
+       const modals = ['#exampleModal4','#exampleUsersModal', '#exampleUsersModal2', '#exampleUsersModal3', '#exampleUsersModal4'];
        modals.forEach(modalId=>{
             const modalEl = document.querySelector(modalId);
             const modal = bootstrap.Modal.getInstance(modalEl);

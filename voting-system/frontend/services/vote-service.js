@@ -54,47 +54,42 @@ var VoteService={
         });
         $("#submitVote").on("click", function() {
             const selectedParty = $("#partySelect").val();
-            const selected = $("#candidateSelect").val() || [];
+            const selected = ($("#candidateSelect").val() || []).map(Number);
             if(!selectedParty){
                 return toastr.error("Please select a political party!");
             }
-            if(selected.length===0){
+            if(selected.length === 0){
                 return toastr.error("Please select at least one candidate!");
             }
             if(selected.length > 3){
                 return toastr.error("Please select at most 3 candidates!");
             }
             $("#areYouSureModal").modal("show");
-            $("#areYouSureModal .btn-danger").off("click").on("click", ()=>{
+            $("#areYouSureModal .btn-danger").off("click").on("click", () => {
                 $("#areYouSureModal").modal("hide");
                 $.blockUI({message: "<h3>Processing your vote ...</h3>"});
-                let posts=0;
-                selected.forEach(candidateId=>{
-                    RestClient.post("vote", {user_id: userId, candidate_id: candidateId},function(){
-                        RestClient.patch(`candidate/${candidateId}`, {vote_count: 'increment'}, function(){
-                            posts++;
-                            if(posts === selected.length){
-                                RestClient.patch(`user/${userId}`, {has_voted: 1}, function(){
-                                    toastr.success("Your vote has been submitted!");
-                                    setTimeout(()=>{
-                                        $.blockUI({message: `<h3>Thank you for voting. You will now be logged out.</h3>`});
-                                        setTimeout(()=>{
-                                            localStorage.removeItem("user_token");
-                                            UserService.logout();
-                                            $.unblockUI();
-                                        }, 2000)
-                                    }, 2500);
-                                }, function(xhr, status, error){
-                                    console.error("Error: ", error);
-                                    $.unblockUI();
-                                });
-                            }
-                        }, function(xhr, status, error){
-                            console.error("Error: ", error);
-                        });
-                    },function(xhr, status, error){
-                        console.error("Error: ", error);
-                    });
+                $.ajax({
+                    url: Constants.PROJECT_BASE_URL + "votes/submit",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ candidate_ids: selected }),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authentication", localStorage.getItem("user_token"));
+                    },
+                    success: function() {
+                        toastr.success("Your vote has been submitted!");
+                        setTimeout(() => {
+                            $.blockUI({message: "<h3>Thank you for voting. You will now be logged out.</h3>"});
+                            setTimeout(() => {
+                                $.unblockUI();
+                                UserService.logout();
+                            }, 2000);
+                        }, 2500);
+                    },
+                    error: function(xhr) {
+                        toastr.error(xhr.responseText || "Error submitting vote.");
+                        $.unblockUI();
+                    }
                 });
             });
         });

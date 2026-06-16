@@ -1,5 +1,6 @@
 <?php
-/*Testing backend deployment and healthchecks*/
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 
 if ($_SERVER['REQUEST_URI'] === '/' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     http_response_code(200);
@@ -16,7 +17,7 @@ $allowedOrigins = [
 
 if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
     header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
-} 
+}
 
 header("Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authentication");
@@ -24,7 +25,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authentication");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(204);
     exit();
-} 
+}
 
 require "./vendor/autoload.php";
 require "rest/services/CandidateService.php";
@@ -38,9 +39,9 @@ require "middleware/AuthMiddleware.php";
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+Flight::map('error', function(Throwable $e) {
+    Flight::halt(500, 'An internal server error occurred.');
+});
 
 Flight::register('candidate_service', "CandidateService");
 Flight::register('user_service', "UserService");
